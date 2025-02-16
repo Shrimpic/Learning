@@ -1,0 +1,14 @@
+.display{
+  background-color: rgb(212, 208, 208);
+  place-items: left;
+}
+.calcButtonGrid {
+  display: grid;
+  grid-template-columns: repeat(3,50px);
+  grid-template-rows: repeat(3,50px);
+  gap: 5px
+}
+.calcButton {
+font-size: 20px;
+align-items: center;
+}
