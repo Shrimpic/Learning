@@ -6,16 +6,23 @@ function App() {
 
   const mathResult = () => {
     //mathClick('')
-    let temp = Number(result.split(/\+|-/)[0]);
-    let sign = result.match(/[+-]/g)
+    let sign = result.match(/[+\-×÷]/g);
+    let splitResult = result.split(/\+|-|×|÷/);
+    let temp = Number(splitResult[0]);
 
-    for(let i = 1; i < result.split(/\+|-/).length;i++) {
+    for(let i = 1; i < splitResult.length;i++) {
       switch (sign[i - 1]) {
         case "+":
-          temp += Number(result.split(/\+|-/)[i]);
+          temp += Number(splitResult[i]);
           break;
         case "-":
-          temp -= Number(result.split(/\+|-/)[i]);
+          temp -= Number(splitResult[i]);
+          break;
+        case "×":
+          temp *= Number(splitResult[i]);
+          break;
+        case "÷":
+          temp /= Number(splitResult[i]);
           break;
       }
     }
@@ -24,12 +31,12 @@ function App() {
 
   return (
     <>
+    <div className='calcUI'>
       <div className='display'>
         <a>{result}</a>
       </div>
-
       <div className='calcButtonGrid'> {
-      [1, 2, 3, 4, 5, 6, 7, 8, 9, "+", "-", "="].map((value, index) => (
+      [7, 8, 9, "÷", 4, 5, 6, "×", 1, 2, 3, "-", 0, ".", "=", "+"].map((value, index) => (
         <button key={index} className='calcButton' 
         onClick={() => {
           switch(value) {
@@ -40,8 +47,9 @@ function App() {
               setResult(result+value);
           } 
         } 
-      }>{value}</button>)) 
+          }>{value}</button>)) 
         } 
+        </div>
       </div>
     </>
   )
